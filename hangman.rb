@@ -14,6 +14,24 @@ class Hangman
   def user_input
   end
 
+
+  def game_start
+
+    while @counter < @word.length && @missed_counter < 6 do
+      print "Game Word :: - "
+      @word_placeholder.each do |u|
+        print u + " "
+      end
+      puts " "
+      print "wrong choice :: " + @missed_counter.to_s
+      puts " "
+      print "Enter character ::--"
+      @guess_input = (gets.chomp).downcase
+      play_game
+      result
+    end
+  end
+
   def play_game
     if @repeated_choices.index(@guess_input).nil? && !(@guess_input.match(/^[[:alpha:]]+$/).nil?)
       @repeated_choices.push(@guess_input)
@@ -53,3 +71,5 @@ class Hangman
     end
   end
 end
+
+Hangman.new('hangman').game_start
